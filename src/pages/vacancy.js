@@ -7,12 +7,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Link from "@mui/material/Link";
 
-function Freelancer() {
-    const [freelancers, setFreelancer] = useState();
+function Vacancy() {
+    const [vacancies, setVacancies] = useState();
     const navigate = useNavigate();
 
     function handleClick() {
-        navigate("/createFreelancer");
+        navigate("/createVacancy");
     }
     useEffect(() => {
         fetchData();
@@ -20,8 +20,8 @@ function Freelancer() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://localhost:7031/api/freelancer');
-            setFreelancer(response);
+            const response = await fetch('https://localhost:7031/api/vacancies');
+            setVacancies(response);
             console.log(response)
         } catch (error) {
             console.error(error);
@@ -30,20 +30,20 @@ function Freelancer() {
 
     return <Container component="main" maxWidth="lg">
         <Typography component="h1" variant="h5">
-            Vacancies | <Link onClick={handleClick}>Create Freelancer</Link>
+            Vacancies | <Link onClick={handleClick}>Create Vacancy</Link>
         </Typography>
-        {freelancers && freelancers.map(freelancer => {
+        {vacancies && vacancies.map(vacancy => {
             <Box
                 sx={{ mt: 1 }}
             >
                 <Card sx={{ maxWidth: 1300, mx: 'auto' }}>
                     <CardHeader
-                        title={freelancer.jobTittle}
-                        subheader={freelancer.location}
+                        title={vacancy.companyName}
+                        subheader={vacancy.closingDate}
                     />
                     <CardContent>
                         <Typography variant="body2" color="text.secondary">
-                            {freelancer.Description}
+                            {vacancy.Description}
                         </Typography>
                     </CardContent>
                 </Card>
@@ -51,5 +51,6 @@ function Freelancer() {
         })
         }
     </Container>
+
 }
-export default Freelancer;
+export default Vacancy;

@@ -7,22 +7,22 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
-import { useNavigate } from 'react-router-dom';
 
-export default function Signup() {
+export default function createVacancy() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get("email"),
-            password: data.get("password"),
-        });
-    };
 
-    const navigate = useNavigate();
-    function handleClick() {
-        navigate("/login");
-    }
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ data: data })
+        };
+        fetch('https://localhost:7031/api/vacancies/', requestOptions)
+            .then(response => response.json())
+            .then(data => setPostId(data.id));
+       
+    };
 
     return (
         <Container component="main" maxWidth="lg">
@@ -68,7 +68,7 @@ export default function Signup() {
                             }}
                         >
                             <Typography component="h1" variant="h5">
-                                Sign up
+                               Create Vacancy
                             </Typography>
                             <Box
                                 component="form"
@@ -80,28 +80,28 @@ export default function Signup() {
                                     margin="normal"
                                     required
                                     fullWidth
-                                    name="name"
-                                    label="Firstname"
+                                    name="companyName"
+                                    label="Company Name"
                                     type="text"
-                                    id="firstname"
+                                    id="companyName"
                                 />
                                 <TextField
                                     margin="normal"
                                     required
                                     fullWidth
-                                    name="Lastname"
-                                    label="Lastname"
+                                    name="requirements"
+                                    label="Requirements"
                                     type="text"
-                                    id="Lastname"
+                                    id="Requirements"
                                 />
                                 <TextField
                                     margin="normal"
                                     required
                                     fullWidth
-                                    name="gender"
-                                    label="Gender"
+                                    name="closingDate"
+                                    label="Closing Date"
                                     type="text"
-                                    id="gender"
+                                    id="ClosingDate"
                                 />
                                 <TextField
                                     margin="normal"
@@ -117,21 +117,19 @@ export default function Signup() {
                                     margin="normal"
                                     required
                                     fullWidth
-                                    name="password"
-                                    label="Password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="current-password"
+                                    name="VacancyType"
+                                    label="Vacancy Type"
+                                    type="text"
+                                    id="VacancyType"
                                 />
                                 <TextField
                                     margin="normal"
                                     required
                                     fullWidth
-                                    name="confirm password"
-                                    label="Confirm Password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="current-password"
+                                    name="description"
+                                    label="Description"
+                                    type="text"
+                                    id="description"
                                 />
                                 <Button
                                     type="submit"
@@ -139,15 +137,8 @@ export default function Signup() {
                                     variant="contained"
                                     sx={{ mt: 3, mb: 2 }}
                                 >
-                                    Sign Up
+                                    SAVE
                                 </Button>
-                                <Grid container>
-                                    <Grid item>
-                                        <Link href="#" variant="body2" onClick={handleClick}>
-                                            {"Already have an account? Sign In"}
-                                        </Link>
-                                    </Grid>
-                                </Grid>
                             </Box>
                         </Box>
                     </Grid>

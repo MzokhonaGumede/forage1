@@ -53,15 +53,15 @@ function Navbar() {
                         <Link to="/" className={classes.link}>
                             Home
                         </Link>
-                        <Link to="/about" className={classes.link}>
-                            About
+                        <Link to="/freelancer" className={classes.link}>
+                            Freelancers
                         </Link>
-                        <Link to="/contact" className={classes.link}>
-                            Contact
+                        <Link to="./pages/vacancy" className={classes.link}>
+                                Vacancies
                         </Link>
-                        <Link to="/signup" className={classes.link}>
-                            LOGIN
-                        </Link>
+                        {/* <Link to="/createVacancy" className={classes.link}>
+                            CreateVacancy
+                        </Link> */}
                     </div>
                 )}
             </Toolbar>

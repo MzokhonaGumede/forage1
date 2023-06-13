@@ -9,8 +9,14 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
+import { useNavigate } from 'react-router-dom';
 
-export default function Faq() {
+export default function Login() {
+    const navigate = useNavigate();
+    function handleClick() {
+        navigate("/signup");
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -111,7 +117,7 @@ export default function Faq() {
                                         </Link>
                                     </Grid>
                                     <Grid item>
-                                        <Link href="#" variant="body2">
+                                        <Link path="/signup" variant="body2" onClick={handleClick}>
                                             {"Don't have an account? Sign Up"}
                                         </Link>
                                     </Grid>
